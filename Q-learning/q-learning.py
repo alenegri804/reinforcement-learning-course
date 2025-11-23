@@ -72,8 +72,32 @@ def q_learning():
                 break
     return Q
 
+def print_policy(Q):
+    # Mappatura indici -> simboli freccia
+    moves = {
+        0: "↑",  # Su
+        1: "↓",  # Giù
+        2: "←",  # Sinistra
+        3: "→"   # Destra
+    }
+    
+    print("\n--- Policy Appresa (Strategia Migliore) ---")
+    for r in range(NUM_ROW):
+        row_str = "|"
+        for c in range(NUM_COL):
+            # Troviamo l'azione migliore per questa casella
+            best_action_idx = np.argmax(Q[r][c])
+            
+            # Se è un ostacolo o un terminale, potremmo volerlo segnare diversamente,
+            # ma qui stampiamo semplicemente cosa farebbe l'agente.
+            action_symbol = moves[best_action_idx]
+            
+            row_str += f" {action_symbol} |"
+        print(row_str)
+    print("-------------------------------------------")
+
 def main():
     Q = q_learning()
-    print(Q)
+    print_policy(Q)
 
 main()
