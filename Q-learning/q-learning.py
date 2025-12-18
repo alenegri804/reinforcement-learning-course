@@ -98,6 +98,7 @@ def print_policy(Q):
 
 def main():
     Q = q_learning()
-    print_policy(Q)
+    # print_policy(Q)
+    print(Q)
 
 main()
